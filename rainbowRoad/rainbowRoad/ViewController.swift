@@ -10,39 +10,33 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    
-    
     @IBOutlet weak var tableView: UITableView!
     
-    let tableData: [String] = ["red", "orange", "yellow", "green", "blue", "indigo", "violet" ]
-    
+    let tableData = [UIColor.red, UIColor.orange, UIColor.yellow, UIColor.green, UIColor.blue, UIColor.purple]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
-        tableView.rowHeight = 60
-//        tableView.delegate = self
-        // Do any additional setup after loading the view, typically from a nib.
+        tableView.rowHeight = 100
+        tableView.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
 
 }
 
-extension ViewController: UITableViewDataSource {
+extension ViewController: UITableViewDataSource, UITableViewDelegate {
     
-    // how many cells are we going to need?
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 7
+        return tableData.count
     }
     
-    // how should i create each cell?
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath)
+        cell.textLabel?.text = "asd"
         cell.backgroundColor = tableData[indexPath.row]
         return cell
     }
